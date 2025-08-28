@@ -1,216 +1,88 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
-       /* --- GLOBAL RESET --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+        *{
+    margin: 0%;
+    padding: 0%;
 }
-
 body {
-  background-color: #F5F5F5;
-  color: rgb(128, 0, 255);
-  font-family: sans-serif;
+    background-color: aliceblue;
+    font-family: sans-serif;
+    color: #200404;
 }
-
-/* --- NAVBAR --- */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(19, 19, 43);
-  height: 60px;
-  padding: 0 20px;
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: aliceblue;
+    align-items: center;
+    width: auto;
+    height: 4rem;
 }
-
-nav ul {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.nav ul {
+    display: flex;
+    justify-content: space-between;
 }
-
-nav ul li {
-  list-style: none;
+.nav ul li {
+    margin: 0rem 1.5rem;
+    list-style: none;
 }
-
-nav ul li a {
-  text-decoration: none;
-  color: aliceblue;
-  font-size: 16px;
+.nav span {
+margin-left: 2rem;
+font-size: 2rem;
 }
-
-/* --- HERO SECTION --- */
-.first-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;   /* responsive ke liye */
-  padding: 40px 20px;
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 90%;
+    height: 100vh;
 }
-
-.left-section {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  flex: 1;
+.left-container {
+    font-size: 4rem;
 }
-
-.right-section img {
-  max-width: 100%;
-  height: auto;
+.copyright {
+    display: flex;
+text-align: center;
+background-color: rgb(10, 130, 130);
+width: 100%;
+height: 10rem;
+justify-content: center;
+align-items: center;
 }
-
-/* --- ABOUT --- */
-.aboutme {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: whitesmoke;
-  background-color: rgb(15, 39, 86);
-  padding: 20px;
-  margin: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-/* --- PROJECTS --- */
-#projectss {
-  color: #F5F5F5;
-  background-color: rgb(15, 39, 86);
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  margin: 20px;
-  border-radius: 5px;
-}
-
-/* --- INSTAGRAM BUTTON --- */
-.instagram {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  border: 2px solid orange;
-  width: 250px;
-  height: 45px;
-  margin: 40px auto;       /* center horizontally */
-  background-color: rgb(15, 39, 86);
-}
-
-.instagram a {
-  text-decoration: none;
-  color: #F5F5F5;
-  font-weight: bold;
-}
-
-/* --- RESPONSIVE DESIGN --- */
-
-/* Tablets */
-@media (max-width: 768px) {
-  .left-section {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-  nav {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-  }
-  nav ul {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .left-section {
-    font-size: 1.2rem;
-  }
-  nav ul li a {
-    font-size: 14px;
-  }
-  .aboutme {
-    font-size: 1rem;
-    padding: 15px;
-  }
-  .instagram {
-    width: 90%; /* full width in mobile */
-  }
-}
-
     </style>
 </head>
-
 <body>
     <header>
-        <nav>
-            <div class="left">Portfolio Of Rohit</div>
-            <div class="right">
+        <nav class="nav">
+            <span>Rohit's Portfolio</span>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#projects">Projects</a></a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="/">Contact</a></li>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Projects</li>
+                    <li>Contact</li>
                 </ul>
-            </div>
+            </span>
         </nav>
     </header>
     <main>
-        <section class="first-section">
-            <div class="left-section">
-                <p>Hii, My Name is <span class="pink">Rohit</span>  </p>
-                <p>And Iam a passionate </p> <span id="typing" class="colour"></span>
+        <div class="main-container">
+            <div class="left-container">Hii, My Name is Rohit 
+                <div > and iam a passiaonate <span id="typing"></span> </div>
             </div>
-            <div class="right-section"> <img src="hii.png.png"></div>
-        </section>
-                       <script>
-    var typed = new Typed("#typing", {
-      strings: [
-        "<span style='color:blue'>Developer</span>",
-        "<span style='color:green'>Cloud Engineer</span>",
-        "<span style='color:purple'>Designer</span>"
-      ],
-      typeSpeed: 100,
-      backSpeed: 60,
-      loop: true
-    });
-  </script>
-  <hr style="width: auto; height: 4px; background-color: rgb(1, 35, 24); border: none;">
-  <br>
-  <h2 id="about">About Me</h2>
-  <br>
-  <p class="aboutme">  
-A passionate developer and cloud enthusiast, driven by curiosity and creativity.  
-I believe in writing clean code, designing sleek solutions, and constantly pushing myself to learn more.  
-From building websites to exploring cloud infrastructures, I enjoy turning ideas into reality.  
-This portfolio is just a glimpse of my journey and I’m just getting started.</p>
-<br>
-<section id="projects">Projects</section>
-<br>
-<p id="projectss">Coming Soon</p>
- <script>
-    var typed = new Typed("#projectss", { strings: [
-        "<span style='color:white'>Coming Soon</span>"
-    ],
-      typeSpeed: 100,
-      backSpeed: 100,
-      loop: true
-    }); </script>
-    <br>
-    <selection id="contact"><h1>Contact ME</h1></selection>
-  <div class="instagram"> <a href="https://instagram.com/wholesomerohit_/">Instagram</a> </div>
+            <div class="rightcontainer">
+                <img src="hii.png.png"></div>
+        </div>
     </main>
+    <footer>
+        <div class="copyright">© Rohit Rajput , all rights reserved</div>
+    </footer>
 </body>
-
 </html>
