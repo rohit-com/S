@@ -1,4 +1,15 @@
-/* --- GLOBAL RESET --- */
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+       /* --- GLOBAL RESET --- */
 * {
   margin: 0;
   padding: 0;
@@ -138,3 +149,68 @@ nav ul li a {
   }
 }
 
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Portfolio Of Rohit</div>
+            <div class="right">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#projects">Projects</a></a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="first-section">
+            <div class="left-section">
+                <p>Hii, My Name is <span class="pink">Rohit</span>  </p>
+                <p>And Iam a passionate </p> <span id="typing" class="colour"></span>
+            </div>
+            <div class="right-section"> <img src="hii.png.png"></div>
+        </section>
+                       <script>
+    var typed = new Typed("#typing", {
+      strings: [
+        "<span style='color:blue'>Developer</span>",
+        "<span style='color:green'>Cloud Engineer</span>",
+        "<span style='color:purple'>Designer</span>"
+      ],
+      typeSpeed: 100,
+      backSpeed: 60,
+      loop: true
+    });
+  </script>
+  <hr style="width: auto; height: 4px; background-color: rgb(1, 35, 24); border: none;">
+  <br>
+  <h2 id="about">About Me</h2>
+  <br>
+  <p class="aboutme">  
+A passionate developer and cloud enthusiast, driven by curiosity and creativity.  
+I believe in writing clean code, designing sleek solutions, and constantly pushing myself to learn more.  
+From building websites to exploring cloud infrastructures, I enjoy turning ideas into reality.  
+This portfolio is just a glimpse of my journey and I’m just getting started.</p>
+<br>
+<section id="projects">Projects</section>
+<br>
+<p id="projectss">Coming Soon</p>
+ <script>
+    var typed = new Typed("#projectss", { strings: [
+        "<span style='color:white'>Coming Soon</span>"
+    ],
+      typeSpeed: 100,
+      backSpeed: 100,
+      loop: true
+    }); </script>
+    <br>
+    <selection id="contact"><h1>Contact ME</h1></selection>
+  <div class="instagram"> <a href="https://instagram.com/wholesomerohit_/">Instagram</a> </div>
+    </main>
+</body>
+
+</html>
