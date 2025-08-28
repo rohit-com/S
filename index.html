@@ -1,153 +1,175 @@
-<!DOCTYPE html> <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>SHOP</title>
-        <style>* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-body {
-    background-color: lightgray;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: black;
-}
-.title {
-    background-color: aqua;
-    text-align: center;
-    border: 2px solid yellowgreen;
-    border-radius: 0.5px;
-    height: 50px;
-    width: auto;
-}
-.button {
-background-color: blue;
-text-align: center;
-text-decoration: none;
-padding: 10px 20px;
-border-radius: 0.8px;
-border: 2px solid orange;
-cursor: pointer;
-color: white;
-display: flex;
-flex-direction: column;
-margin: auto;
-}
-.button:hover { 
-    background-color: rgb(0, 255, 213);
-}
-.badminton {
-    border: 2px solid red;
-    border-radius: 2px;
-    padding: 3px;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    text-align: center;
-}
-.badminton img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-.parent {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.price {
-    text-align: center;
-}
-.box {
-    align-items: center;
-    margin: auto;
-}
-.about {
-    color: rgb(195, 0, 255);
-    background-color: rgb(0, 187, 255);
-    text-align: center;
-    margin: auto;
-    box-sizing: border-box;
-    width: auto;
-    height: 100px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-family: 'Times New Roman', Times, serif;
-}
-.paragraph {
-    font-family: cursive;
-}
-.copy {
-    text-align: center;
-}
-.contact {
-    text-align: center;
-}</style>
-        </head>
-    <body>
-        <h1 class="title">🎾 SPORTS SHOP</h1>
-        <div class="parent">
-<div class="box"> <div class="badminton"> <img src="https://i.pinimg.com/736x/06/82/25/06822525088472e66bfa9c6694296910.jpg" alt="badminton"> </div>
-        <div class="price"><p>Badminton</p>
-<p>Price - 120₹</p> </div>
-<button class="button">BuyNow</button> </div>
-        <br />
-       <div class="box"> <div class="badminton">
-        <img src="https://i.pinimg.com/736x/0d/e4/d0/0de4d025104599a91040da34c1514de9.jpg" alt="Badminton"> </div>
-          <div class="price"> <p>Badminton</p>
-        <p>Price 150₹</p> </div>
-    <button class="button">BookNow</button> </div>
-    <br />
-    <div class="box"> <div class="badminton"> <img src="https://i.pinimg.com/736x/b3/40/56/b340566eb510527692129043eedd3985.jpg" alt="bat"> </div>
-    <div class="price"> <p>Bat</p> 
-    <p>Price 700₹</p> </div>
-    <button class="button">BuyNow</button> </div>
-    <br />
-   <div class="box"> <div class="badminton"> <img src="https://i.pinimg.com/736x/f5/07/b3/f507b34712ae2feb9d37c1d8e5198511.jpg" alt="bat"> </div>
-    <div class="price"> <p>Bat</p>
-    <p>Price 1202₹</p>
-</div>
-<button class="button">BuyNow</button> </div>
-<br />
-<div class="box"> <div class="badminton"> <img src="https://i.pinimg.com/1200x/49/4d/0a/494d0aa31e003a9f79924559b3bd1cca.jpg" alt="Footbal"> </div>
-<div class="price"><p>Ball</p>
-<p>Price 600₹</p> </div>
-<button class="button">BuyNow</button> </div>
-<div class="box"> <div class="badminton"> <img src="https://i.pinimg.com/1200x/31/88/0a/31880a1079855c7e82b923b4f87dcc7c.jpg" alt="hockey"></div>
-<div class="price"><p>Hockey</p>
-<p>Price - 170₹</p> </div>
-<button class="button">BuyNow</button> </div>
-</div>
-<br />
-<hr />
-<br />
-<div class="about"><h2>About The Store</h2></div>
-<br />
-<div class="paragraph"> <p>Welcome to My store!
-This website is a creative portfolio project designed by me to showcase my web development skills and passion for modern, engaging web design. Although this is not a real commercial store, the goal is to provide visitors with a realistic experience of browsing, exploring, and imagining the energy of a professional sports store.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-Our sports store concept is dedicated to making quality sports equipment accessible and appealing to everyone, from beginners to seasoned athletes. The virtual shelves are filled with a wide range of products—including badminton rackets and shuttlecocks, cricket bats, footballs, hockey sticks, and much more. Each item is selected, described, and presented to reflect the variety and excitement that real sports stores offer. All the prices and product listings are fictitious and intended purely for demonstration purposes.
+        body {
+            background-color: #F5F5F5;
+            color: rgb(128, 0, 255);
+        }
 
-This platform is built with modern web technologies, featuring a clean and attractive layout, and interactive elements. It demonstrates not only my proficiency in HTML, CSS, and responsive design, but also my ability to create visually appealing and user-friendly interfaces. While the 'Buy Now' and 'Book Now' buttons are non-functional, they represent what real eCommerce sites offer, and showcase how an actual sporting goods store may look and operate online.
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(19, 19, 43);
+            height: 80px;
+            padding-left: 10px;
+        }
 
-From a design perspective, great attention has been paid to details—professional color schemes, easy-to-read fonts, high-resolution product images, and logical organization of products. The pages are structured to ensure easy navigation, smooth browsing, and a welcoming atmosphere for all visitors, whether viewing on desktop or mobile devices.
+        nav ul {
+            display: flex;
+            align-items: center; 
+         }
+         nav ul li {
+            list-style: none;
+            margin: 0px 25px;
+        }
+               nav ul li a {
+                text-decoration: none;
+                color: aliceblue;
+               }
+        html {
+            scroll-behavior: smooth;
+        }
 
-Building this project has allowed me to explore important skills like layout optimization, code efficiency, and the creative process behind user-centered digital experiences. It also serves as a practical example of how to balance aesthetics with usability—a vital skill for any aspiring front-end developer.
+        .left {
+            font-size: 1.5rem;
+        }
 
-Please note: This shop is not real. It does not process orders, store payment information, or deliver goods. All content, images, and product details are presented solely for portfolio purposes and web development demonstration.
+        .first-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0px;
+            width: auto;
+            height: auto;
+        }
 
-Thank you for visiting and exploring my sports shop portfolio site. I hope you find the design inspiring and reflective of my passion for website creation. If you wish to learn more about my work, discuss collaboration, or share feedback, please reach out! Your support and interest in my journey as a developer mean a lot.</p> </div>
-<br />
-<div class="copy">© Rohit Rajput - All rights are reserved.</div>
-<br />
-<div class="contact"><a href="https://www.instagram.com/xtreamerohit"> <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="24" height="24"></a> </div>
-</div>
-</div>
+        .left-section {
+            font-size: 3rem;
+            margin: 70px 0px;
+        }
+
+        .right-section {
+            width: fit-content;
+            height: fit-content;
+            margin-right: 0px;
+        }
+        .pink {
+            color: rgb(27, 255, 255);
+        }
+        
+        .aboutme {
+            font-size: 2rem;
+            color: whitesmoke;
+            background-color: rgb(15, 39, 86);
+        }
+        #about {
+            text-align: center;
+        }
+        #projects {
+            text-align: center;
+        font-size: 2rem;
+        }
+        #projectss {
+            display: flex;
+            color: #F5F5F5;
+            background-color: rgb(15, 39, 86);
+            height: 80px;
+            width: auto;
+            align-items: center;
+            font-size: xx-large;
+        }
+        .instagram {
+            display: flex;
+            box-sizing: border-box;
+            border-radius:  5px;
+            border: 2.5px solid orange;
+             width: 400px;
+             height: 40px;
+             align-items: center;
+             justify-content: center;
+             background-color:rgb(15, 39, 86) ;
+             position: absolute;
+             
+        }
+        .instagram a {
+            text-decoration: none;
+            color: #F5F5F5;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Portfolio Of Rohit</div>
+            <div class="right">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#projects">Projects</a></a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="first-section">
+            <div class="left-section">
+                <p>Hii, My Name is <span class="pink">Rohit</span>  </p>
+                <p>And Iam a passionate </p> <span id="typing" class="colour"></span>
+            </div>
+            <div class="right-section"> <img src="hii.png.png"></div>
+        </section>
+                       <script>
+    var typed = new Typed("#typing", {
+      strings: [
+        "<span style='color:blue'>Developer</span>",
+        "<span style='color:green'>Cloud Engineer</span>",
+        "<span style='color:purple'>Designer</span>"
+      ],
+      typeSpeed: 100,
+      backSpeed: 60,
+      loop: true
+    });
+  </script>
+  <hr style="width: auto; height: 4px; background-color: rgb(1, 35, 24); border: none;">
+  <br>
+  <h2 id="about">About Me</h2>
+  <br>
+  <p class="aboutme">  
+A passionate developer and cloud enthusiast, driven by curiosity and creativity.  
+I believe in writing clean code, designing sleek solutions, and constantly pushing myself to learn more.  
+From building websites to exploring cloud infrastructures, I enjoy turning ideas into reality.  
+This portfolio is just a glimpse of my journey and I’m just getting started.</p>
+<br>
+<section id="projects">Projects</section>
+<br>
+<p id="projectss">Coming Soon</p>
+ <script>
+    var typed = new Typed("#projectss", { strings: [
+        "<span style='color:white'>Coming Soon</span>"
+    ],
+      typeSpeed: 100,
+      backSpeed: 100,
+      loop: true
+    }); </script>
+    <br>
+    <selection id="contact"><h1>Contact ME</h1></selection>
+  <div class="instagram"> <a href="https://instagram.com/wholesomerohit_/">Instagram</a> </div>
+    </main>
 </body>
+
 </html>
