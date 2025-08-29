@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
+    *{
     margin: 0%;
     padding: 0%;
 }
@@ -22,14 +22,27 @@ body {
     align-items: center;
     width: auto;
     height: 4rem;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-top: 0.10rem;
 }
 .nav ul {
     display: flex;
     justify-content: space-between;
+    width: 90%;
+    max-width: fit-content;
 }
 .nav ul li {
     margin: 0rem 1.5rem;
     list-style: none;
+    
+}
+.nav ul li a {
+    text-decoration: none;
+    color: aliceblue;
+}
+.nav ul li:hover {
+    background-color: burlywood;
 }
 .nav span {
 margin-left: 2rem;
@@ -44,6 +57,7 @@ font-size: 2rem;
     margin-right: 2%;
     width: 90%;
     height: 100vh;
+    flex-wrap: wrap;
 }
 .left-container {
     font-size: 4rem;
@@ -57,17 +71,50 @@ height: 10rem;
 justify-content: center;
 align-items: center;
 }
-    </style>
+.about {
+   display: flex;
+   background-color: rgb(26, 26, 87);
+   width: auto;
+   height: 40vh;
+
+}
+.right-container {
+    width: 90%;
+    max-width: fit-content;
+    height: fit-content;
+    margin: 3rem 20px;
+}
+@media screen and (max-width: 480px) {
+    .nav {
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .main-container {
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 16px; /* Never go below 16px on mobile */
+        line-height: 1.6;
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+</style>
 </head>
 <body>
     <header>
         <nav class="nav">
             <span>Rohit's Portfolio</span>
                 <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Projects</li>
-                    <li>Contact</li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Projects</a></li>
+                    <li><a href="/">Contact</a></li>
                 </ul>
             </span>
         </nav>
@@ -78,9 +125,12 @@ align-items: center;
                 <div > and iam a passiaonate <span id="typing"></span> </div>
             </div>
             <div class="rightcontainer">
-                <img src="https://i.ibb.co/LD4f8xGX/image.webp"></div>
+                <img src="hii.png.png"></div>
         </div>
-    </main>
+        <div class="about"> 
+     <div> About Me </div>
+        <div class="sentence">Hii iam a passiaonate web developer</div>
+     </main>
     <footer>
         <div class="copyright">© Rohit Rajput , all rights reserved</div>
     </footer>
