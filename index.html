@@ -1,138 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    *{
+    <title>Wikipedia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+    * {
     margin: 0%;
-    padding: 0%;
-}
-body {
-    background-color: aliceblue;
+    background-color: #FFFFFF;
+    color: #202122;
     font-family: sans-serif;
-    color: #200404;
-}
-.nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: #333;
-    color: aliceblue;
-    align-items: center;
-    width: auto;
-    height: 4rem;
     box-sizing: border-box;
-    border-radius: 20px;
-    margin-top: 0.10rem;
 }
-.nav ul {
+
+.navbar {
     display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: fit-content;
-}
-.nav ul li {
-    margin: 0rem 1.5rem;
-    list-style: none;
-    
-}
-.nav ul li a {
-    text-decoration: none;
-    color: aliceblue;
-}
-.nav ul li:hover {
-    background-color: burlywood;
-}
-.nav span {
-margin-left: 2rem;
-font-size: 2rem;
-}
-.main-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 90%;
-    height: 100vh;
-    flex-wrap: wrap;
-}
-.left-container {
-    font-size: 4rem;
-}
-.copyright {
-    display: flex;
-text-align: center;
-background-color: rgb(10, 130, 130);
-width: 100%;
-height: 10rem;
-justify-content: center;
-align-items: center;
-}
-.about {
-   display: flex;
-   background-color: rgb(26, 26, 87);
-   width: auto;
-   height: 40vh;
+    background-color: #FFFFFF;
+    height: 67px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
 
 }
-.right-container {
-    width: 90%;
-    max-width: fit-content;
-    height: fit-content;
-    margin: 3rem 20px;
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-start;
 }
-@media screen and (max-width: 480px) {
-    .nav {
-        padding: 10px;
-    }
+
+.logo {
+    background-image: url("logo.jpg");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
-@media screen and (max-width: 480px) {
-    .main-container {
-        padding: 10px;
-    }
+
+.nav-logo-text {
+    margin-left: 5px;
+    margin-top: 5px;
 }
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 16px; /* Never go below 16px on mobile */
-        line-height: 1.6;
-    }
+
+.nav-search input {
+    width: 600px;
+    height: 30px;
+    border: 0.5px solid #202122;
+
 }
-img {
-    max-width: 100%;
-    height: auto;
+
+.nav-last a {
+    color: #3366cc;
 }
-</style>
+
+.search-input {
+    font-size: 1rem;
+}
+
+.nav-search {
+    height: 44px;
+    display: flex;
+}
+
+.glass {
+    width: 40px;
+    margin-left: 20px;
+}
+
+.nv-second {
+    height: 30px;
+}
+
+.nav-3 {
+    display: flex;
+    height: 40px;
+    background-color: #FFFFFF;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    justify-content: flex-start;
+    width: 100%;
+    margin-right: 6rem;
+    border-bottom: 0.5px solid #9abcc7;
+}
+
+.nav-3 a {
+
+    color: #3366cc;
+}
+
+.nav-3-page {
+    display: flex;
+    margin-left: 3.9rem;
+    margin-top: 20px;
+}
+
+.nav-3-text {
+    display: flex;
+    margin-left: 65.5rem;
+    gap: 15px;
+    margin-top: 20px;
+
+}
+
+.nav-3-text a {
+    color: #3366cc;
+}
+
+.wiki-box {
+    background-color: #F9F9F9;
+    height: 116.5px;
+    width: 1424.8px;
+    margin-left: 34px;
+    padding: 0px 8px 8px;
+    border: 0.8px solid #c9e6f0;
+    margin-top: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wiki {
+    margin-top: 20px;
+
+}
+
+.wiki p {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.wiki a {
+    color: #3366cc;
+}
+
+.xx {
+    margin-top: 4px;
+}
+
+.xy {
+    margin-top: 4px;
+}
+
+.container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 1500px;
+    height: 962px;
+    background-color: #F5FFFA;
+    margin-left: 4px;
+    margin-top: 2px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-left: 1px solid #CEF2E0;
+
+}
+
+.container a {
+    color: #3366cc;
+}
+
+.container h3 {
+    width: 763px;
+    height: 35px;
+    background-color: #CEF2E0;
+    border: 0.5px solid #c9e6f0;
+    margin-left: 6px;
+    margin-top: 6px;
+    padding-left: 6px;
+    padding-top: 3px;
+
+}
+
+.container-img {
+    display: block;
+    float: left;
+}
+
+.container-img img {
+    width: 174px;
+    height: 112px;
+    margin-top: 4px;
+    margin-left: 6px;
+    margin-right: 16px;
+}
+
+.container-img p {
+    text-align: center;
+    font-size: 0.85rem;
+
+}
+
+.main-text a {
+    color: #3366cc;
+    margin-top: 4px;
+}
+
+.main-text {
+    font-size: 1rem;
+    margin-top: 4px;
+    line-height: 1.65;
+    display: block;
+    justify-content: center;
+}
+
+.credits {
+    display: block;
+    float: right;
+    margin-top: 2rem;
+    font-size: 16px;
+    line-height: 1.65;
+    margin-right: 4px;
+    display: block;
+    float: right;
+}
+
+.credits a {
+    margin-right: 4px;
+    font-weight: 700;
+    display: block;
+    float: right;
+}
+
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.last-container {
+    height: 503.48px;
+    background-color: #F5FFFA;
+    line-height: 1.65;
+    color: #202122;
+    font-size: 1rem;
+    margin-left: 4px;
+}
+
+.last-container h2 {
+    height: 35.67px;
+    background-color: #DDCEF2;
+    width: auto;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    justify-content: center;
+    font-weight: 600;
+    padding: 2px;
+}
+
+.last-image {
+    display: block;
+    float: left;
+}
+.last-image img {
+    margin-right: 17px;
+}
+.last-container p {
+    margin-top: 4rem;
+
+}
+.last-cred {
+    display: block;
+    float: right;
+}
+.last-container a {
+color: #3366cc;
+}
+.copyright {
+    height: 40px;
+    background-color: #9abcc7;
+    color: #202122;
+    font-size: 1rem;
+    margin-top: 4px;
+    display:flex;
+    flex-direction: column;
+    font-weight: 700;
+    text-align: center;
+    border-top: 1.5px solid #9abcc7;
+}
+.copyright p {
+    gap: 10px;
+  
+}
+.copy-logo {
+    margin-top: 4px;
+}
+
+   </style>
 </head>
-<body>
-    <header>
-        <nav class="nav">
-            <span>Rohit's Portfolio</span>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">About</a></li>
-                    <li><a href="/">Projects</a></li>
-                    <li><a href="/">Contact</a></li>
-                </ul>
-            </span>
-        </nav>
-    </header>
-    <main>
-        <div class="main-container">
-            <div class="left-container">Hii, My Name is Rohit 
-                <div > and iam a passiaonate <span id="typing"></span> </div>
-            </div>
-            <div class="rightcontainer">
-                <img src="hii.png.png"></div>
+
+<header>
+    <div class="navbar">
+        <div class="nav-menu">
+            <i class="fa-solid fa-list"></i>
         </div>
-        <div class="about"> 
-     <div> About Me </div>
-        <div class="sentence">Hii iam a passiaonate web developer</div>
-     </main>
-    <footer>
-        <div class="copyright">© Rohit Rajput , all rights reserved</div>
-    </footer>
+        <div class="logo">
+        </div>
+        <div class="nav-logo-text">
+            <p style="font-size: 2rem;">Wikipedia</p>
+            <p style="font-size: 0.90rem;">The Free encyclopedia</p>
+        </div>
+        <div class="nav-search">
+            <input type="text" placeholder="Search Wikipedia" class="search-input">
+            <div class="search-icon">
+            </div>
+        </div>
+        <div class="glass">
+            <i class="fa-solid fa-glasses"></i>
+        </div>
+        <div class="nav-last">
+            <a>Donate</a>
+            <a>Create account</a>
+            <a>Log in</a>
+        </div>
+    </div>
+    <div class="nv-second">
+
+    </div>
+    <div class="nav-3">
+        <div class="nav-3-page">
+            <p>Main Page </p>
+            <a> Talk </a>
+        </div>
+        <div class="nav-3-text">
+            <p>Read</p>
+            <a>View Source</a>
+            <a>View History</a>
+            <a>Tools</a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="wiki-box">
+        <div class="wiki">
+            <p>Welcome to <a>Wikipedia</a></p>
+            <div class="xy">
+                the <a>free encyclopedia</a>
+                that <a>anyone can edit.</a>
+            </div>
+            <div class="xx">
+                <a>302.746</a>
+                active editors. <a>7,106,713</a>
+                articles in <a>English</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="article-box">
+            <h3>From today's featured article</h3>
+            <div class="container-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Edith_Swan_and_Rose_Gooding.jpg/1280px-Edith_Swan_and_Rose_Gooding.jpg"
+                    alt="">
+                <p>Edith Swan (left)
+                </p>
+                <p>and Rose Gooding (right)
+                </p>
+            </div>
+            <div class="main-text">
+                The <a>Littlehampton libels</a> were a series of letters sent to numerous residents of
+                <a>Littlehampton</a>, in
+                southern
+                England, over a three-year period between 1920 and 1923. The letters, which contained obscenities and
+                false
+                accusations, were written by Edith Swan, a thirty-year-old laundress; she tried to incriminate her
+                neighbour, Rose Gooding, a thirty-year-old married woman. Swan and Gooding (both pictured) had once been
+                friends, but after Swan made a false report to the <a>National Society for the Prevention of Cruelty to
+                    Children</a> accusing Gooding of maltreating one of her sister's children,
+                the letters started
+                arriving.
+                Many of
+                them were signed as if from Gooding. Swan brought a <a>private prosecution</a> against Gooding for
+                <a>libel.</a>
+                Gooding
+                was imprisoned twice, but the <a>Metropolitan Police</a> investigated and cleared her. Swan was
+                prosecuted in
+                December 1921. A similar case of letters being sent over several years was reported in 2024, in the
+                village
+                of <a>Shiptonthorpe</a>, East Yorkshire. <a>(Full article...)</a>
+            </div>
+            <div class="credits">
+                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
+                    </a> </p>
+                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="article-box">
+            <h3>From today's featured article</h3>
+            <div class="container-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Fountains_Abbey_view02_2005-08-27.jpg/330px-Fountains_Abbey_view02_2005-08-27.jpg"
+                    alt="">
+                <p>Ruins of Fountains Abbey
+                </p>
+            </div>
+            <div class="main-text">
+                Around June 1447, <a>John Greenwell was poisoned</a> by a monk, William Downom. The <a> abbot </a> of
+                <a>Fountains Abbey</a>
+                (ruins pictured), Greenwell led the richest <a>abbey</a>in England; his office made him an important
+                figure in
+                <a>Yorkshire.</a>The first half of the century saw the abbey wracked with internal strife, including a
+                disputed election which had violent repercussions as well as, possibly,<a>embezzelement.</a>Greenwell
+                appears
+                to have brought a degree of peace to the abbey upon his election, but he does not seem to have been
+                popular. Downom poisoned a dish of <a>pottage,</a> which he attempted to feed to Greenwell while he was
+                sick.
+                He survived the poisoning, and the case became notorious. Although it took over a year and discussions
+                with Fountains' <a>motherhouse</a>of Cîteaux <a>Abbey,</a> Downom was eventually expelled. Greenwell
+                remained
+                controversial and was both accused and accuser in local lawsuits, and incurred the distrust of <a>King
+                    Edward IV </a> his political leanings. <a>(Full article...)</a>
+            </div>
+            <div class="credits">
+                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
+                    </a> </p>
+                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="article-box">
+            <h3>Did you know ...</h3>
+            <div class="container-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Max_Beckmann-Traum_von_Monte_Carlo_DSC4484.jpg"
+                    alt="">
+                <p>Traum von Monte Carlo
+                </p>
+            </div>
+            <div class="main-text">
+                <p><a>The Littlehampton libels</a> were a series of letters sent to numerous residents of Littlehampton,
+                    in
+                    southern England, over a<a>three-year period</a> between 1920 and 1923. The letters, which contained
+                    obscenities and false accusations, were written by Edith Swan, a thirty-year-old laundress; she
+                    tried to incriminate her neighbour, Rose Gooding, a thirty-year-old married woman. Swan and Gooding
+                    (both pictured) had once been <a>friends,</a> but after Swan made a false report to the National
+                    Society
+                    for the Prevention of Cruelty to Children accusing Gooding of maltreating one of her sister's
+                    children, the letters started arriving. Many of them were signed as if from Gooding. Swan brought a
+                    private<a>prosecution against Gooding </a> for libel. Gooding was <a>imprisoned twice</a>, but the
+                    Metropolitan
+                    Police investigated and cleared her. Swan was prosecuted in December 1921. A similar case of letters
+                    being sent over several years was reported in 2024, in the village of Shiptonthorpe, East Yorkshire.
+                    (Full article...)</p>
+            </div>
+            <div class="credits">
+                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
+                    </a> </p>
+                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="article-box">
+            <h3>In the news</h3>
+            <div class="container-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Lord_Fakaf%C4%81nua_in_2024_%28cropped%29.jpg/250px-Lord_Fakaf%C4%81nua_in_2024_%28cropped%29.jpg"
+                    alt="" style="width: 120px; height: 164px;">
+                <p>Fatafehi Fakafānua
+                </p>
+            </div>
+            <div class="main-text">
+                <ul>
+                    <li><a>Fatafehi Fakafānua</a> (pictured)<a>is elected</a> prime minister by <a>the legislative
+                            assembly of
+                            Tonga.</a></li>
+                    <li>Filmmaker and actor <a>Rob Reiner</a> and his wife,<a>Michele</a> , are found stabbed to death
+                        in their
+                        Los Angeles home.</li>
+                    <li><a>José Antonio Kast is elected president of Chile.</a></li>
+                    <li>Sixteen people, including a gunman, are killed in <a>a mass shooting attack</a> on a
+                        <a>Hanukkah</a>Hanukkah celebration at <a>Bondi Beach</a> in Sydney.
+                    </li>
+                </ul>
+            </div>
+            <div class="credits">
+                <p>Ongoing: <a>Gaza war timeline genocide Russo-Ukrainian war timeline Sudanese civil war timeline
+                        Recent deaths: Bobby Rousseau Abraham QuintanillaHans RoerichtJubilant SykesJohn Noble
+                        WilfordRa'ad Sa'ad</a></p>
+                <ul class="last-credits"> <a>More current eventsNominate an article</a></ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="last-container">
+        <div class="container-x">
+            <h2>Today's featured picture
+            </h2>
+            <div class="last-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg/960px-Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg"
+                    alt="" style="width: 350px;" height="436px">
+            </div>
+            <p>
+                <a>Ludwig van Beethoven </a>(baptised 17 December 1770 – 26 March 1827) was a German composer and pianist. He
+                is one of the most revered figures in the history of Western music; his works rank among the most
+                performed of the classical music repertoire and span the transition from the Classical period to the
+                Romantic era. His early period, <a>during which he forged his craft</a>, is typically considered to have lasted
+                until 1802. From 1802 to around 1812, his middle period showed an individual development from the styles
+                of Joseph Haydn and Wolfgang Amadeus Mozart, and is sometimes characterised as heroic. During this time,
+                Beethoven began to grow increasingly deaf. In his late period, from 1812 to 1827, he extended his
+                innovations in<a>This oil-on-canvas portrait</a>  This oil-on-canvas portrait, titled Beethoven with the
+                Manuscript of the Missa Solemnis, was painted by Joseph Karl Stieler in 1820, and depicts Beethoven
+                while composing his Missa solemnis, which was first performed in 1824. The painting hangs in the
+                Beethoven House at his birthplace in Bonn, Germany.</p>
+                <div class="last-cred">
+                   <p>Recently featured:</p><p><a>African chaffinch. McClure TunnelLeopard seal</a></p>
+                </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="copyright">
+        <p>DIRECTED BY ME - PRODUCED BY ME - ACT BY ME - CODE BY ME - MEEEEEE.......</p>
+        <p>ROHIT RAJPUT ☕❤️</p>
+        <p class="copy-logo">© Copyright - 2025 , All rights are Reserved</p>
+    </div>
+</footer>
 </body>
+
 </html>
