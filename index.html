@@ -1,520 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wikipedia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <style>
-    * {
-    margin: 0%;
-    background-color: #FFFFFF;
-    color: #202122;
-    font-family: sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7C3AED">
+<title>Aero — chat by username</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cloud:#F8F6FF; --card:#FFFFFF; --border:#E3DBFB; --ink:#150F25; --ink2:#0D0918;
+    --muted:#5A5273; --violet:#7C3AED; --magenta:#C026D3; --amber:#F5A926;
+    --on-accent:#FFFFFF;
+    --gradient: linear-gradient(135deg, var(--violet), var(--magenta));
+    --font-display: 'Bricolage Grotesque', -apple-system, sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --shadow: 0 20px 55px -25px rgba(40,15,90,.35);
     box-sizing: border-box;
-}
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --cloud:#0D0918; --card:#1B1432; --border:#31264F; --ink:#F5F1FF; --muted:#B0A7CE; }
+  }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; padding:0; background:var(--cloud); color:var(--ink); font-family:var(--font-body); overflow-x:hidden; }
+  html { scroll-behavior:smooth; scroll-padding-top:78px; }
+  img,svg { max-width:100%; display:block; }
+  h1,h2,h3 { font-family:var(--font-display); letter-spacing:-0.025em; margin:0; }
+  p { margin:0; line-height:1.6; }
+  a { color:inherit; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
 
-.navbar {
-    display: flex;
-    background-color: #FFFFFF;
-    height: 67px;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
+  /* ---------- top bar ---------- */
+  .topbar { position:sticky; top:0; z-index:40; display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; padding-top:calc(14px + env(safe-area-inset-top,0px));
+    background:color-mix(in srgb, var(--cloud) 82%, transparent); backdrop-filter:blur(14px);
+    border-bottom:1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+  .brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:19px; }
+  .brand svg { flex-shrink:0; }
+  .top-cta { display:inline-flex; align-items:center; gap:8px; background:var(--gradient); color:var(--on-accent);
+    font-weight:700; font-size:13.5px; padding:10px 18px; border-radius:999px; text-decoration:none;
+    box-shadow:0 10px 24px -12px rgba(124,58,237,.55); transition:transform .15s ease; }
+  .top-cta:hover { transform:translateY(-1px); }
 
-}
+  /* ---------- hero ---------- */
+  .hero { position:relative; overflow:hidden; padding:76px 0 96px; }
+  .hero::before { content:""; position:absolute; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, color-mix(in srgb, var(--violet) 24%, transparent), transparent 68%);
+    top:-220px; left:-160px; pointer-events:none; }
+  .hero::after { content:""; position:absolute; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, color-mix(in srgb, var(--magenta) 20%, transparent), transparent 68%);
+    bottom:-200px; right:-140px; pointer-events:none; }
+  .hero-grid { position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  .hero h1 { font-size:clamp(34px,4.6vw,54px); line-height:1.04; max-width:560px; }
+  .hero .lead { margin-top:20px; color:var(--muted); font-size:16.5px; max-width:460px; line-height:1.65; }
+  .hero-ctas { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+  .btn { border:none; border-radius:14px; padding:14px 22px; font-weight:700; font-size:15px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+  .btn.primary { background:var(--gradient); color:var(--on-accent); box-shadow:0 16px 34px -16px rgba(124,58,237,.6); }
+  .btn.ghost { background:transparent; border:1.5px solid var(--border); color:var(--ink); }
+  .hero-note { margin-top:26px; font-size:12.5px; color:var(--muted); }
 
-.nav-menu {
-    display: flex;
-    justify-content: flex-start;
-}
+  /* phone mock */
+  .phone { width:min(340px,100%); margin-left:auto; background:var(--card); border:1px solid var(--border);
+    border-radius:30px; box-shadow:var(--shadow); padding:14px; }
+  .phone-head { display:flex; align-items:center; gap:9px; padding:4px 6px 12px; border-bottom:1px solid var(--border); margin-bottom:12px; }
+  .phone-avatar { width:30px; height:30px; border-radius:50%; background:var(--gradient); flex-shrink:0; }
+  .phone-head b { font-family:var(--font-display); font-size:13.5px; }
+  .phone-head span { display:block; font-size:11px; color:var(--muted); }
+  .phone-body { min-height:270px; display:flex; flex-direction:column; gap:8px; padding:2px 2px 6px; }
+  .bub { max-width:78%; padding:9px 13px; border-radius:18px; font-size:13.5px; line-height:1.4; opacity:0; transform:translateY(6px); animation:bubIn .35s ease forwards; }
+  .bub.in { align-self:flex-start; background:var(--cloud); border:1px solid var(--border); border-bottom-left-radius:5px; }
+  .bub.out { align-self:flex-end; background:var(--gradient); color:#fff; border-bottom-right-radius:5px; }
+  @keyframes bubIn { to { opacity:1; transform:translateY(0); } }
+  .typing-dots { align-self:flex-start; display:flex; gap:4px; padding:10px 13px; background:var(--cloud); border:1px solid var(--border); border-radius:16px; border-bottom-left-radius:5px; opacity:0; animation:bubIn .3s ease forwards; }
+  .typing-dots span { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:bounce 1.1s infinite ease-in-out; }
+  .typing-dots span:nth-child(2){animation-delay:.15s} .typing-dots span:nth-child(3){animation-delay:.3s}
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:.5} 30%{transform:translateY(-3px);opacity:1} }
+  .react-pop { position:relative; }
+  .react-pop .rx { position:absolute; bottom:-9px; right:8px; background:var(--card); border:1px solid var(--border); border-radius:999px; font-size:11px; padding:1px 5px; opacity:0; animation:rxIn .25s ease forwards; }
+  @keyframes rxIn { to { opacity:1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .bub, .typing-dots, .rx { animation:none !important; opacity:1 !important; transform:none !important; }
+  }
 
-.logo {
-    background-image: url("logo.jpg");
-    background-size: cover;
-    height: 50px;
-    width: 50px;
-    margin-left: 5px;
-    margin-top: 5px;
-}
+  /* ---------- section shell ---------- */
+  section { padding:88px 0; }
+  .kicker-row { display:flex; align-items:baseline; gap:14px; margin-bottom:52px; }
+  .kicker-row h2 { font-size:clamp(26px,3.2vw,36px); }
+  .feature-row { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-bottom:96px; }
+  .feature-row:last-child { margin-bottom:0; }
+  .feature-row.rev .f-copy { order:2; }
+  .feature-row.rev .f-visual { order:1; }
+  .f-copy h3 { font-size:23px; margin-bottom:12px; }
+  .f-copy p { color:var(--muted); font-size:15px; max-width:420px; }
+  .f-list { margin-top:16px; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .f-list li { display:flex; gap:10px; font-size:14px; color:var(--ink); }
+  .f-list li svg { flex-shrink:0; margin-top:3px; color:var(--violet); }
+  .f-visual { background:var(--card); border:1px solid var(--border); border-radius:22px; padding:22px; box-shadow:var(--shadow); }
 
-.nav-logo-text {
-    margin-left: 5px;
-    margin-top: 5px;
-}
+  /* request banner mock */
+  .req-mock p.rq { font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .req-actions { display:flex; gap:8px; }
+  .req-actions span { flex:1; text-align:center; border-radius:10px; padding:9px; font-size:13px; font-weight:700; border:1.5px solid var(--border); }
+  .req-actions .acc { background:var(--gradient); color:#fff; border-color:transparent; }
 
-.nav-search input {
-    width: 600px;
-    height: 30px;
-    border: 0.5px solid #202122;
+  /* search mock */
+  .search-mock .sbar { display:flex; align-items:center; gap:8px; border:1.5px solid var(--border); border-radius:12px; padding:10px 13px; font-size:13.5px; color:var(--muted); margin-bottom:14px; }
+  .result-item { display:flex; align-items:center; gap:11px; padding:9px 4px; }
+  .result-item .av { width:34px; height:34px; border-radius:50%; background:var(--gradient); flex-shrink:0; }
+  .result-item b { font-family:var(--font-display); font-size:13.5px; display:block; }
+  .result-item span { font-size:11.5px; color:var(--muted); }
 
-}
+  /* privacy toggle mock */
+  .toggle-row2 { display:flex; align-items:center; justify-content:space-between; padding:11px 2px; border-bottom:1px solid var(--border); }
+  .toggle-row2:last-child { border-bottom:none; }
+  .toggle-row2 .tt { font-size:13px; font-weight:600; }
+  .toggle-row2 .td2 { font-size:11px; color:var(--muted); margin-top:2px; }
+  .sw { width:36px; height:21px; border-radius:999px; position:relative; flex-shrink:0; }
+  .sw.on { background:var(--gradient); } .sw.off { background:var(--border); }
+  .sw i { position:absolute; top:2.5px; width:16px; height:16px; border-radius:50%; background:#fff; }
+  .sw.on i { right:2.5px; } .sw.off i { left:2.5px; }
 
-.nav-last a {
-    color: #3366cc;
-}
+  /* theme swatches */
+  .swatch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .swatch { border-radius:14px; height:70px; position:relative; overflow:hidden; border:1px solid var(--border); }
+  .swatch span { position:absolute; bottom:6px; left:8px; font-size:10.5px; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.35); }
+  .sw1 { background:linear-gradient(135deg,#7C3AED,#C026D3); }
+  .sw2 { background:linear-gradient(135deg,#FF7EB6,#FFA1A8); }
+  .sw3 { background:linear-gradient(135deg,#3DDC97,#B5E86B); }
+  .sw4 { background:linear-gradient(160deg,#2A0F5E,#8B2F7D 60%,#FF5FA2); }
+  .sw5 { background:linear-gradient(160deg,#050B2A,#101B57 55%,#F5B942); }
+  .sw6 { background:linear-gradient(150deg,#5BB8FF,#DDF3FF); }
 
-.search-input {
-    font-size: 1rem;
-}
+  /* install mock */
+  .install-mock { display:flex; flex-direction:column; gap:14px; align-items:flex-start; }
+  .install-chip { display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:14px; padding:12px 15px; width:100%; }
+  .install-chip .ic { width:34px; height:34px; border-radius:9px; background:var(--gradient); flex-shrink:0; }
+  .install-chip b { font-size:13px; display:block; }
+  .install-chip span { font-size:11px; color:var(--muted); }
+  .install-btn { margin-left:auto; background:var(--gradient); color:#fff; font-size:11.5px; font-weight:700; padding:7px 12px; border-radius:999px; white-space:nowrap; }
 
-.nav-search {
-    height: 44px;
-    display: flex;
-}
+  /* closing / footer band */
+  .closing { background:var(--ink2); color:#F1ECFF; padding:90px 0; }
+  .closing h2 { font-size:clamp(28px,3.6vw,42px); max-width:640px; line-height:1.12; }
+  .closing p { color:#B3A9D6; margin-top:16px; max-width:480px; font-size:15.5px; }
+  .closing .btn.primary { margin-top:30px; }
+  footer { background:var(--ink2); color:#B3A9D6; padding:26px 0 calc(26px + env(safe-area-inset-bottom,0px)); border-top:1px solid rgba(255,255,255,.08); }
+  .foot-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:12.5px; }
+  .foot-brand { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:700; color:#F1ECFF; }
 
-.glass {
-    width: 40px;
-    margin-left: 20px;
-}
-
-.nv-second {
-    height: 30px;
-}
-
-.nav-3 {
-    display: flex;
-    height: 40px;
-    background-color: #FFFFFF;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    justify-content: flex-start;
-    width: 100%;
-    margin-right: 6rem;
-    border-bottom: 0.5px solid #9abcc7;
-}
-
-.nav-3 a {
-
-    color: #3366cc;
-}
-
-.nav-3-page {
-    display: flex;
-    margin-left: 3.9rem;
-    margin-top: 20px;
-}
-
-.nav-3-text {
-    display: flex;
-    margin-left: 65.5rem;
-    gap: 15px;
-    margin-top: 20px;
-
-}
-
-.nav-3-text a {
-    color: #3366cc;
-}
-
-.wiki-box {
-    background-color: #F9F9F9;
-    height: 116.5px;
-    width: 1424.8px;
-    margin-left: 34px;
-    padding: 0px 8px 8px;
-    border: 0.8px solid #c9e6f0;
-    margin-top: 6px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.wiki {
-    margin-top: 20px;
-
-}
-
-.wiki p {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-.wiki a {
-    color: #3366cc;
-}
-
-.xx {
-    margin-top: 4px;
-}
-
-.xy {
-    margin-top: 4px;
-}
-
-.container {
-    grid-template-columns: repeat(2, 1fr);
-    width: 1500px;
-    height: 962px;
-    background-color: #F5FFFA;
-    margin-left: 4px;
-    margin-top: 2px;
-    gap: 10px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-left: 1px solid #CEF2E0;
-
-}
-
-.container a {
-    color: #3366cc;
-}
-
-.container h3 {
-    width: 763px;
-    height: 35px;
-    background-color: #CEF2E0;
-    border: 0.5px solid #c9e6f0;
-    margin-left: 6px;
-    margin-top: 6px;
-    padding-left: 6px;
-    padding-top: 3px;
-
-}
-
-.container-img {
-    display: block;
-    float: left;
-}
-
-.container-img img {
-    width: 174px;
-    height: 112px;
-    margin-top: 4px;
-    margin-left: 6px;
-    margin-right: 16px;
-}
-
-.container-img p {
-    text-align: center;
-    font-size: 0.85rem;
-
-}
-
-.main-text a {
-    color: #3366cc;
-    margin-top: 4px;
-}
-
-.main-text {
-    font-size: 1rem;
-    margin-top: 4px;
-    line-height: 1.65;
-    display: block;
-    justify-content: center;
-}
-
-.credits {
-    display: block;
-    float: right;
-    margin-top: 2rem;
-    font-size: 16px;
-    line-height: 1.65;
-    margin-right: 4px;
-    display: block;
-    float: right;
-}
-
-.credits a {
-    margin-right: 4px;
-    font-weight: 700;
-    display: block;
-    float: right;
-}
-
-.container::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.last-container {
-    height: 503.48px;
-    background-color: #F5FFFA;
-    line-height: 1.65;
-    color: #202122;
-    font-size: 1rem;
-    margin-left: 4px;
-}
-
-.last-container h2 {
-    height: 35.67px;
-    background-color: #DDCEF2;
-    width: auto;
-    margin-bottom: 4px;
-    margin-top: 4px;
-    justify-content: center;
-    font-weight: 600;
-    padding: 2px;
-}
-
-.last-image {
-    display: block;
-    float: left;
-}
-.last-image img {
-    margin-right: 17px;
-}
-.last-container p {
-    margin-top: 4rem;
-
-}
-.last-cred {
-    display: block;
-    float: right;
-}
-.last-container a {
-color: #3366cc;
-}
-.copyright {
-    height: 40px;
-    background-color: #9abcc7;
-    color: #202122;
-    font-size: 1rem;
-    margin-top: 4px;
-    display:flex;
-    flex-direction: column;
-    font-weight: 700;
-    text-align: center;
-    border-top: 1.5px solid #9abcc7;
-}
-.copyright p {
-    gap: 10px;
-  
-}
-.copy-logo {
-    margin-top: 4px;
-}
-
-   </style>
+  @media (max-width:860px) {
+    .hero-grid { grid-template-columns:1fr; }
+    .phone { margin:0 auto; }
+    .feature-row, .feature-row.rev { grid-template-columns:1fr; }
+    .feature-row.rev .f-copy, .feature-row.rev .f-visual { order:initial; }
+  }
+</style>
 </head>
+<body>
 
-<header>
-    <div class="navbar">
-        <div class="nav-menu">
-            <i class="fa-solid fa-list"></i>
-        </div>
-        <div class="logo">
-        </div>
-        <div class="nav-logo-text">
-            <p style="font-size: 2rem;">Wikipedia</p>
-            <p style="font-size: 0.90rem;">The Free encyclopedia</p>
-        </div>
-        <div class="nav-search">
-            <input type="text" placeholder="Search Wikipedia" class="search-input">
-            <div class="search-icon">
-            </div>
-        </div>
-        <div class="glass">
-            <i class="fa-solid fa-glasses"></i>
-        </div>
-        <div class="nav-last">
-            <a>Donate</a>
-            <a>Create account</a>
-            <a>Log in</a>
-        </div>
-    </div>
-    <div class="nv-second">
+<div class="topbar">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 100 100"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#C026D3"/></linearGradient></defs><rect x="6" y="6" width="88" height="76" rx="26" fill="url(#tg)"/><path d="M22 78 Q10 90 4 94 Q12 76 20 70 Z" fill="url(#tg)"/><path d="M30 46 L76 28 L54 78 L45 57 Z" fill="#fff"/><path d="M45 57 L54 78 L61 51 L45 57 Z" fill="#fff" opacity="0.55"/></svg>
+    Aero
+  </div>
+  <a class="top-cta" href="#" id="tryLink">Try Aero</a>
+</div>
 
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Find someone by their username. Talk once they say yes.</h1>
+      <p class="lead">Aero is a real-time messenger built around usernames instead of phone numbers. Search a handle, send a hello, and once it's accepted you're in a real conversation — with reactions, read receipts, and a theme worth switching on.</p>
+      <div class="hero-ctas">
+        <a class="btn primary" href="#" id="tryLink2">Try Aero</a>
+        <a class="btn ghost" href="#features">See what's inside</a>
+      </div>
+      <p class="hero-note">No phone number required. Only your username is ever shown to other people.</p>
     </div>
-    <div class="nav-3">
-        <div class="nav-3-page">
-            <p>Main Page </p>
-            <a> Talk </a>
-        </div>
-        <div class="nav-3-text">
-            <p>Read</p>
-            <a>View Source</a>
-            <a>View History</a>
-            <a>Tools</a>
-        </div>
+    <div class="phone" id="phoneMock">
+      <div class="phone-head">
+        <div class="phone-avatar"></div>
+        <div><b>@wren</b><span>Online</span></div>
+      </div>
+      <div class="phone-body" id="phoneBody"></div>
     </div>
-</header>
-<main>
-    <div class="wiki-box">
-        <div class="wiki">
-            <p>Welcome to <a>Wikipedia</a></p>
-            <div class="xy">
-                the <a>free encyclopedia</a>
-                that <a>anyone can edit.</a>
-            </div>
-            <div class="xx">
-                <a>302.746</a>
-                active editors. <a>7,106,713</a>
-                articles in <a>English</a>
-            </div>
-        </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="kicker-row"><h2>Everything a chat needs. Nothing it doesn't.</h2></div>
+
+    <div class="feature-row">
+      <div class="f-copy">
+        <h3>No numbers. No noise.</h3>
+        <p>Sign up with a username and an email — that's it. Search for anyone by their handle; nobody sees your contact details, only the name you chose.</p>
+        <ul class="f-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Instant username search</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Email + password sign-in, with recovery</li>
+        </ul>
+      </div>
+      <div class="f-visual search-mock">
+        <div class="sbar">🔎 Search a username to start chatting</div>
+        <div class="result-item"><div class="av"></div><div><b>@wren</b><span>Tap to chat</span></div></div>
+        <div class="result-item"><div class="av"></div><div><b>@marlow.k</b><span>Online</span></div></div>
+        <div class="result-item"><div class="av"></div><div><b>@juno_</b><span>Tap to chat</span></div></div>
+      </div>
     </div>
-    <div class="container">
-        <div class="article-box">
-            <h3>From today's featured article</h3>
-            <div class="container-img">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Edith_Swan_and_Rose_Gooding.jpg/1280px-Edith_Swan_and_Rose_Gooding.jpg"
-                    alt="">
-                <p>Edith Swan (left)
-                </p>
-                <p>and Rose Gooding (right)
-                </p>
-            </div>
-            <div class="main-text">
-                The <a>Littlehampton libels</a> were a series of letters sent to numerous residents of
-                <a>Littlehampton</a>, in
-                southern
-                England, over a three-year period between 1920 and 1923. The letters, which contained obscenities and
-                false
-                accusations, were written by Edith Swan, a thirty-year-old laundress; she tried to incriminate her
-                neighbour, Rose Gooding, a thirty-year-old married woman. Swan and Gooding (both pictured) had once been
-                friends, but after Swan made a false report to the <a>National Society for the Prevention of Cruelty to
-                    Children</a> accusing Gooding of maltreating one of her sister's children,
-                the letters started
-                arriving.
-                Many of
-                them were signed as if from Gooding. Swan brought a <a>private prosecution</a> against Gooding for
-                <a>libel.</a>
-                Gooding
-                was imprisoned twice, but the <a>Metropolitan Police</a> investigated and cleared her. Swan was
-                prosecuted in
-                December 1921. A similar case of letters being sent over several years was reported in 2024, in the
-                village
-                of <a>Shiptonthorpe</a>, East Yorkshire. <a>(Full article...)</a>
-            </div>
-            <div class="credits">
-                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
-                    </a> </p>
-                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
-                </ul>
-            </div>
-        </div>
-        <div class="article-box">
-            <h3>From today's featured article</h3>
-            <div class="container-img">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Fountains_Abbey_view02_2005-08-27.jpg/330px-Fountains_Abbey_view02_2005-08-27.jpg"
-                    alt="">
-                <p>Ruins of Fountains Abbey
-                </p>
-            </div>
-            <div class="main-text">
-                Around June 1447, <a>John Greenwell was poisoned</a> by a monk, William Downom. The <a> abbot </a> of
-                <a>Fountains Abbey</a>
-                (ruins pictured), Greenwell led the richest <a>abbey</a>in England; his office made him an important
-                figure in
-                <a>Yorkshire.</a>The first half of the century saw the abbey wracked with internal strife, including a
-                disputed election which had violent repercussions as well as, possibly,<a>embezzelement.</a>Greenwell
-                appears
-                to have brought a degree of peace to the abbey upon his election, but he does not seem to have been
-                popular. Downom poisoned a dish of <a>pottage,</a> which he attempted to feed to Greenwell while he was
-                sick.
-                He survived the poisoning, and the case became notorious. Although it took over a year and discussions
-                with Fountains' <a>motherhouse</a>of Cîteaux <a>Abbey,</a> Downom was eventually expelled. Greenwell
-                remained
-                controversial and was both accused and accuser in local lawsuits, and incurred the distrust of <a>King
-                    Edward IV </a> his political leanings. <a>(Full article...)</a>
-            </div>
-            <div class="credits">
-                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
-                    </a> </p>
-                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
-                </ul>
-            </div>
-        </div>
-        <div class="article-box">
-            <h3>Did you know ...</h3>
-            <div class="container-img">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Max_Beckmann-Traum_von_Monte_Carlo_DSC4484.jpg"
-                    alt="">
-                <p>Traum von Monte Carlo
-                </p>
-            </div>
-            <div class="main-text">
-                <p><a>The Littlehampton libels</a> were a series of letters sent to numerous residents of Littlehampton,
-                    in
-                    southern England, over a<a>three-year period</a> between 1920 and 1923. The letters, which contained
-                    obscenities and false accusations, were written by Edith Swan, a thirty-year-old laundress; she
-                    tried to incriminate her neighbour, Rose Gooding, a thirty-year-old married woman. Swan and Gooding
-                    (both pictured) had once been <a>friends,</a> but after Swan made a false report to the National
-                    Society
-                    for the Prevention of Cruelty to Children accusing Gooding of maltreating one of her sister's
-                    children, the letters started arriving. Many of them were signed as if from Gooding. Swan brought a
-                    private<a>prosecution against Gooding </a> for libel. Gooding was <a>imprisoned twice</a>, but the
-                    Metropolitan
-                    Police investigated and cleared her. Swan was prosecuted in December 1921. A similar case of letters
-                    being sent over several years was reported in 2024, in the village of Shiptonthorpe, East Yorkshire.
-                    (Full article...)</p>
-            </div>
-            <div class="credits">
-                <p>Recently featured: <a> Littlehampton libelsSimon CameronCommander Keen in Invasion of the Vorticons
-                    </a> </p>
-                <ul class="last-credits"> <a>ArchiveBy emailMore featured articles. About</a></ul>
-                </ul>
-            </div>
-        </div>
-        <div class="article-box">
-            <h3>In the news</h3>
-            <div class="container-img">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Lord_Fakaf%C4%81nua_in_2024_%28cropped%29.jpg/250px-Lord_Fakaf%C4%81nua_in_2024_%28cropped%29.jpg"
-                    alt="" style="width: 120px; height: 164px;">
-                <p>Fatafehi Fakafānua
-                </p>
-            </div>
-            <div class="main-text">
-                <ul>
-                    <li><a>Fatafehi Fakafānua</a> (pictured)<a>is elected</a> prime minister by <a>the legislative
-                            assembly of
-                            Tonga.</a></li>
-                    <li>Filmmaker and actor <a>Rob Reiner</a> and his wife,<a>Michele</a> , are found stabbed to death
-                        in their
-                        Los Angeles home.</li>
-                    <li><a>José Antonio Kast is elected president of Chile.</a></li>
-                    <li>Sixteen people, including a gunman, are killed in <a>a mass shooting attack</a> on a
-                        <a>Hanukkah</a>Hanukkah celebration at <a>Bondi Beach</a> in Sydney.
-                    </li>
-                </ul>
-            </div>
-            <div class="credits">
-                <p>Ongoing: <a>Gaza war timeline genocide Russo-Ukrainian war timeline Sudanese civil war timeline
-                        Recent deaths: Bobby Rousseau Abraham QuintanillaHans RoerichtJubilant SykesJohn Noble
-                        WilfordRa'ad Sa'ad</a></p>
-                <ul class="last-credits"> <a>More current eventsNominate an article</a></ul>
-                </ul>
-            </div>
-        </div>
+
+    <div class="feature-row rev">
+      <div class="f-copy">
+        <h3>The first message is a question, not an intrusion.</h3>
+        <p>Messaging a stranger sends a request, not a chat. They accept or decline before anything opens up — and replying to a request accepts it automatically.</p>
+        <ul class="f-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Accept, decline, or just reply</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Requests are capped, so nobody gets flooded</li>
+        </ul>
+      </div>
+      <div class="f-visual req-mock">
+        <p class="rq">@marlow.k wants to message you.</p>
+        <div class="req-actions"><span class="acc">Accept</span><span>Decline</span></div>
+      </div>
     </div>
-    <div class="last-container">
-        <div class="container-x">
-            <h2>Today's featured picture
-            </h2>
-            <div class="last-image">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg/960px-Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg"
-                    alt="" style="width: 350px;" height="436px">
-            </div>
-            <p>
-                <a>Ludwig van Beethoven </a>(baptised 17 December 1770 – 26 March 1827) was a German composer and pianist. He
-                is one of the most revered figures in the history of Western music; his works rank among the most
-                performed of the classical music repertoire and span the transition from the Classical period to the
-                Romantic era. His early period, <a>during which he forged his craft</a>, is typically considered to have lasted
-                until 1802. From 1802 to around 1812, his middle period showed an individual development from the styles
-                of Joseph Haydn and Wolfgang Amadeus Mozart, and is sometimes characterised as heroic. During this time,
-                Beethoven began to grow increasingly deaf. In his late period, from 1812 to 1827, he extended his
-                innovations in<a>This oil-on-canvas portrait</a>  This oil-on-canvas portrait, titled Beethoven with the
-                Manuscript of the Missa Solemnis, was painted by Joseph Karl Stieler in 1820, and depicts Beethoven
-                while composing his Missa solemnis, which was first performed in 1824. The painting hangs in the
-                Beethoven House at his birthplace in Bonn, Germany.</p>
-                <div class="last-cred">
-                   <p>Recently featured:</p><p><a>African chaffinch. McClure TunnelLeopard seal</a></p>
-                </div>
-        </div>
+
+    <div class="feature-row">
+      <div class="f-copy">
+        <h3>React without breaking the moment.</h3>
+        <p>Typing indicators, reactions, edits and unsend keep a conversation feeling alive. Read receipts and activity status are visible only if you choose to share them.</p>
+        <ul class="f-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Edit or unsend your own messages</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Turn off read receipts or activity status any time</li>
+        </ul>
+      </div>
+      <div class="f-visual">
+        <div class="toggle-row2"><div><div class="tt">Activity status</div><div class="td2">Show when you're online</div></div><div class="sw on"><i></i></div></div>
+        <div class="toggle-row2"><div><div class="tt">Read receipts</div><div class="td2">Let others see you've read their message</div></div><div class="sw off"><i></i></div></div>
+      </div>
     </div>
-</main>
+
+    <div class="feature-row rev">
+      <div class="f-copy">
+        <h3>Pick a mood for every conversation.</h3>
+        <p>Chat themes are set per conversation, not app-wide — a soft sakura scene for one friend, neon Tokyo streets for another. Light, dark, or auto for the app itself.</p>
+        <ul class="f-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Six solid palettes, six illustrated scenes</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Auto light/dark for the rest of the app</li>
+        </ul>
+      </div>
+      <div class="f-visual">
+        <div class="swatch-grid">
+          <div class="swatch sw1"><span>Lilac</span></div>
+          <div class="swatch sw2"><span>Bubblegum</span></div>
+          <div class="swatch sw3"><span>Matcha</span></div>
+          <div class="swatch sw4"><span>Tokyo</span></div>
+          <div class="swatch sw5"><span>Shrine</span></div>
+          <div class="swatch sw6"><span>Meadow</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="f-copy">
+        <h3>Installed, not just opened.</h3>
+        <p>Add Aero to your home screen and it behaves like an app — its own icon, its own window, no browser bar. Accounts run on Firebase Authentication, with email verification and password recovery built in.</p>
+        <ul class="f-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Works as a home-screen app on phone or desktop</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Secure sign-in, verified email, easy password reset</li>
+        </ul>
+      </div>
+      <div class="f-visual install-mock">
+        <div class="install-chip">
+          <div class="ic"></div>
+          <div><b>Aero</b><span>Add to home screen</span></div>
+          <div class="install-btn">Install</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Your people. Your space. One username away.</h2>
+    <p>Aero is free to use and open about how it works. Search a username, say hello, and see where the conversation goes.</p>
+    <a class="btn primary" href="#" id="tryLink3">Try Aero now</a>
+  </div>
+</section>
+
 <footer>
-    <div class="copyright">
-        <p>DIRECTED BY ME - PRODUCED BY ME - ACT BY ME - CODE BY ME - MEEEEEE.......</p>
-        <p>ROHIT RAJPUT ☕❤️</p>
-        <p class="copy-logo">© Copyright - 2025 , All rights are Reserved</p>
+  <div class="wrap foot-row">
+    <div class="foot-brand">
+      <svg width="18" height="18" viewBox="0 0 100 100"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#C026D3"/></linearGradient></defs><rect x="6" y="6" width="88" height="76" rx="26" fill="url(#fg)"/><path d="M22 78 Q10 90 4 94 Q12 76 20 70 Z" fill="url(#fg)"/><path d="M30 46 L76 28 L54 78 L45 57 Z" fill="#fff"/><path d="M45 57 L54 78 L61 51 L45 57 Z" fill="#fff" opacity="0.55"/></svg>
+      Aero
     </div>
+    <div>Runs on Firebase Authentication &amp; Firestore. Your conversations stay between you and the people you talk to.</div>
+  </div>
 </footer>
-</body>
 
+<script>
+  // Hero chat sequence — plays once on load, skipped entirely if the visitor prefers reduced motion.
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var body = document.getElementById("phoneBody");
+  var steps = [
+    { type:"bub", cls:"in", text:"when do the anime themes drop 👀" },
+    { type:"typing" },
+    { type:"bub", cls:"out", text:"already live 😌", react:"❤️" }
+  ];
+  if (reduce) {
+    steps.forEach(function(s){
+      if (s.type==="typing") return;
+      var d=document.createElement("div"); d.className="bub "+s.cls; d.textContent=s.text; body.appendChild(d);
+    });
+  } else {
+    var delay = 300;
+    steps.forEach(function(s){
+      setTimeout(function(){
+        if (s.type==="typing") {
+          var t=document.createElement("div"); t.className="typing-dots";
+          t.innerHTML="<span></span><span></span><span></span>";
+          t.id="tdRow"; body.appendChild(t);
+          setTimeout(function(){ if(t.parentNode) t.remove(); }, 1100);
+        } else {
+          var d=document.createElement("div"); d.className="bub "+s.cls+" react-pop";
+          d.textContent=s.text; body.appendChild(d);
+          if (s.react) {
+            var r=document.createElement("span"); r.className="rx"; r.textContent=s.react;
+            setTimeout(function(){ d.appendChild(r); }, 500);
+          }
+        }
+      }, delay);
+      delay += s.type==="typing" ? 1300 : 700;
+    });
+  }
+</script>
+</body>
 </html>
